@@ -4,3 +4,4 @@ target/
 .settings/
 .classpath
 .project
+R5_A05_gestion_equipe_de_sport/src/main/resources/application.properties

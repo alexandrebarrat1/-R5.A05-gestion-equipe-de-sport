@@ -1,4 +1,4 @@
-package Barrat.R5_A05_gestion_equipe_de_sport;
+package Barrat.R5_A05_gestion_equipe_de_sport.vue;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
