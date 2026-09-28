@@ -8,6 +8,7 @@ import org.jspecify.annotations.Nullable;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,7 +26,7 @@ public class Joueur {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private @Nullable Integer idJoueur = null;
+    private @Nullable Long idJoueur = null;
 	
     
     @NotBlank(message = "Le nom est obligatoire <nom>")
@@ -34,7 +35,7 @@ public class Joueur {
     @NotBlank(message = "Le prenom est obligatoire <prenom>")
     private String prenom;
     
-    @NotNull(message = "La date de naissance est obligatoire <dateNaissance> (jj/mm/aaaa")
+    @NotNull(message = "La date de naissance est obligatoire <dateNaissance> (yyyy-mm-dd")
     private Date dateNaissance;
     
     @Positive(message = "La taille du joueur est obligatoire <taille>")
@@ -50,8 +51,7 @@ public class Joueur {
     @NotNull(message = "La statut est obligatoire <statut>")
     private Statut statut;
     
-    @OneToMany
-    @JoinColumn(name = "joueur")
+    @OneToMany(mappedBy = "joueur", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Commentaire> commentaires = new ArrayList<>();
 
 	public String getNumeroLicence() {
@@ -109,7 +109,8 @@ public class Joueur {
 	public void setStatut(Statut statut) {
 		this.statut = statut;
 	}
-
+	
+	
 	public List<Commentaire> getCommentaires() {
 		return commentaires;
 	}
@@ -118,11 +119,11 @@ public class Joueur {
 		this.commentaires = commentaires;
 	}
 
-	public int getIdJoueur() {
+	public Long getIdJoueur() {
 		return idJoueur;
 	}
 	
-	public void setIdJoueur(Integer idJoueur) {
+	public void setIdJoueur(Long idJoueur) {
 		this.idJoueur = idJoueur;
 	}
 

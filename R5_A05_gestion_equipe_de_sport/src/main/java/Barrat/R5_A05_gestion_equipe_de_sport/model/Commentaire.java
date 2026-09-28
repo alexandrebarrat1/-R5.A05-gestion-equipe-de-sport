@@ -1,5 +1,7 @@
 package Barrat.R5_A05_gestion_equipe_de_sport.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,6 +20,7 @@ public class Commentaire {
     
     @ManyToOne
     @JoinColumn(name = "joueur_id")
+    @JsonIgnore
     private Joueur joueur;
 
 	public String getDescription() {
