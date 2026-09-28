@@ -1,6 +1,8 @@
 package Barrat.R5_A05_gestion_equipe_de_sport.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -9,6 +11,7 @@ import jakarta.persistence.ManyToOne;
 public class Commentaire {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idCommentaire;
     private String description;
     private String dateAvis;

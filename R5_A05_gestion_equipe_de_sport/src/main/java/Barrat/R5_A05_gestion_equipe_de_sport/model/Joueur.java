@@ -1,24 +1,53 @@
 package Barrat.R5_A05_gestion_equipe_de_sport.model;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jspecify.annotations.Nullable;
+
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 @Entity
+@JsonPropertyOrder({"idJoueur", "nom", "prenom", "dateNaissance", "numeroLicence", "taille", "poids", "statut"})
 public class Joueur {
 
 	@Id
-    private int idJoueur;
-    private String numeroLicence;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    private @Nullable Integer idJoueur = null;
+	
+    
+    @NotBlank(message = "Le nom est obligatoire <nom>")
     private String nom;
+    
+    @NotBlank(message = "Le prenom est obligatoire <prenom>")
     private String prenom;
-    private String dateNaissance;
+    
+    @NotNull(message = "La date de naissance est obligatoire <dateNaissance> (jj/mm/aaaa")
+    private Date dateNaissance;
+    
+    @Positive(message = "La taille du joueur est obligatoire <taille>")
     private float taille;
+    
+    @Positive(message = "La poids du joueur est obligatoire <poids>")
     private float poids;
+    
+    @Column(unique = true)
+    @NotBlank(message = "La numero de licence est obligatoire <numeroLicence>")
+    private String numeroLicence;
+    
+    @NotNull(message = "La statut est obligatoire <statut>")
     private Statut statut;
     
     @OneToMany
@@ -49,11 +78,11 @@ public class Joueur {
 		this.prenom = prenom;
 	}
 
-	public String getDateNaissance() {
+	public Date getDateNaissance() {
 		return dateNaissance;
 	}
 
-	public void setDateNaissance(String dateNaissance) {
+	public void setDateNaissance(Date dateNaissance) {
 		this.dateNaissance = dateNaissance;
 	}
 
@@ -91,6 +120,10 @@ public class Joueur {
 
 	public int getIdJoueur() {
 		return idJoueur;
+	}
+	
+	public void setIdJoueur(Integer idJoueur) {
+		this.idJoueur = idJoueur;
 	}
 
 }

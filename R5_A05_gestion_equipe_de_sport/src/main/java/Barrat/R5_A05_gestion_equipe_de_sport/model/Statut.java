@@ -1,4 +1,5 @@
 package Barrat.R5_A05_gestion_equipe_de_sport.model;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum Statut {
     ACTIF("actif"),
@@ -10,7 +11,8 @@ public enum Statut {
     Statut(String value) {
         this.value = value;
     }
-
+    
+    @JsonValue
     public String getValue() {
         return value;
     }
