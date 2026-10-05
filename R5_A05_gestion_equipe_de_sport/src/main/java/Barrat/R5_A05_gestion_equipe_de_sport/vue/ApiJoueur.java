@@ -47,13 +47,9 @@ public class ApiJoueur {
 	    return joueurRepository.save(joueur);
 	}
 
-	
-	
 	@PutMapping("/joueur")
 	public Joueur putJoueur(@Valid @RequestBody Joueur joueur) {
-		if (joueur.getIdJoueur() == null) {
-		    throw THROW_ID_INTROUVABLE;
-		}
+		this.assertJoueurExiste(joueur.getIdJoueur());
 		Joueur existant = joueurRepository.findById(joueur.getIdJoueur()).orElseThrow(() -> THROW_ID_INTROUVABLE); 
 
 	    if (!existant.getNumeroLicence().equals(joueur.getNumeroLicence())) {
