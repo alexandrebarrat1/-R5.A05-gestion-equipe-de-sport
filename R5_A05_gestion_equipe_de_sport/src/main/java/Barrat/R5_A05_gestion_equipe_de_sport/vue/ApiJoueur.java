@@ -2,7 +2,6 @@ package Barrat.R5_A05_gestion_equipe_de_sport.vue;
 
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,7 +23,8 @@ import jakarta.validation.Valid;
 @RestController
 public class ApiJoueur {
 	
-	private static final ResponseStatusException THROW_ID_INTROUVABLE = new ResponseStatusException(HttpStatus.NOT_FOUND, "Joueur introuvable");
+	public static final ResponseStatusException THROW_ID_INTROUVABLE = new ResponseStatusException(HttpStatus.NOT_FOUND, "Joueur introuvable");
+	
 	@Autowired
 	private JoueurRepository joueurRepository;
 
