@@ -46,7 +46,6 @@ public class ApiCommentaire {
 	
 	@GetMapping("/commentaire")
     public List<Commentaire> getAll() {
-		
         return commentaireRepository.findAll();
     }
 	
